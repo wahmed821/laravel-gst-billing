@@ -1,0 +1,42 @@
+.gstcost {
+  width: 20%;
+  position: relative;
+  bottom: 32%;
+  border: none;
+  color: green;
+}
+
+.item-detail {
+  width: 100%;
+  border: 1px solid lightgray !important;
+}
+
+.border-bottom {
+  border: none;
+  border-bottom: 1px solid lightgrey !important;
+  border-radius: 0px;
+}
+
+.extcss {
+  background-color: rgba(218, 218, 218, 0.37);
+  border-radius: 5px;
+}
+
+.heading-color {
+  background-color: rgb(130, 210, 241);
+  color: black;
+}
+
+.w-8 {
+  width: 8%;
+}
+
+.w-15 {
+  width: 15%;
+}
+
+.amountcss {
+  font-weight: bold;
+  border: none;
+  width: 50px;
+}
