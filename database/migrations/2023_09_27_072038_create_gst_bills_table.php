@@ -20,6 +20,7 @@ class CreateGstBillsTable extends Migration
             $table->string("invoice_no")->unique();
             $table->text("item_description")->nullable();
             $table->float("total_amount", 10, 2)->nullable();
+            $table->float("total_amount_usd", 10, 2)->nullable();
             $table->float("cgst_rate", 10, 2)->nullable();
             $table->float("sgst_rate", 10, 2)->nullable();
             $table->float("igst_rate", 10, 2)->nullable();

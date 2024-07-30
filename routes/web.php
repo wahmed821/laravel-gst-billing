@@ -32,15 +32,19 @@ Route::delete('delete-party/{party}', "PartyController@deleteParty")->name('dele
 // GST bill routes
 Route::get('/add-gst-bill', "GstBillController@addGstBill")->name('add-gst-bill');
 Route::get('/manage-gst-bills', "GstBillController@index")->name('manage-gst-bills');
-Route::get('/print-gst-bill/{id}', "GstBillController@print")->name('print-gst-bill');
+Route::get('/print-gst-bill/{id}/{currency?}', "GstBillController@print")->name('print-gst-bill');
 Route::post('/create-gst-bill', "GstBillController@createGstBill")->name('create-gst-bill');
 
 // Soft Delete route
 Route::get('/delete/{table}/{id}', "AppController@delete")->name('delete');
 
 // Resource Controller routes
-//Route::resource('vendor-invoice', VendorInvoice::class)
+Route::get('/vendor-invoice/create/{id}', "VendorInvoice@create")->name('create-vendor-invoice');
 Route::resource('vendor-invoice', 'VendorInvoice');
+
+// User routes
+Route::get('/change-password', "UserController@changePassword")->name('change-password');
+Route::post('/change-password', "UserController@changePasswordSubmit")->name('change-password-submit');
 
 Auth::routes();
 

@@ -18,9 +18,6 @@ class PartyController extends Controller
     # Function to load parties
     public function index()
     {
-        // Get all parties
-        //$parties = Party::all();
-
         // Get all parties with specific columns
         $parties = Party::select(
             'id',
@@ -34,7 +31,7 @@ class PartyController extends Controller
             'ifsc_code',
             'branch_address',
             'created_at'
-        )->get();
+        )->orderBy('id', 'desc')->get();
 
         return view("party.index", compact('parties'));
     }
@@ -51,15 +48,14 @@ class PartyController extends Controller
         // Valildation
         $request->validate([
             'party_type' => 'required',
-            'full_name' => 'required|string|min:2|max:20',
-            'phone_no' => 'required',
+            'full_name' => 'required',
+            /*'phone_no' => 'required',
             'address' => 'required|max:255',
-
-            'account_holder_name' => 'required|string|min:2|max:20',
+            'account_holder_name' => 'required',
             'account_no' => 'required',
             'bank_name' => 'required|max:255',
             'ifsc_code' => 'required|max:50',
-            'branch_address' => 'required|max:255',
+            'branch_address' => 'required|max:255',*/
         ]);
 
         $param = $request->all();
@@ -69,9 +65,7 @@ class PartyController extends Controller
         Party::create($param);
 
         // Redirect to add party back
-        return redirect()->route('add-party')->withStatus("Party created successfully");
-
-        //return redirect()->route('add-party')->with('success', 'Party created successfully');
+        return redirect()->route('manage-parties')->withStatus("Party created successfully");
     }
 
     # Function to load edit party view
@@ -87,14 +81,14 @@ class PartyController extends Controller
         // Valildation
         $request->validate([
             'party_type' => 'required',
-            'full_name' => 'required|string|min:2|max:20',
-            'phone_no' => 'required',
+            'full_name' => 'required',
+            /*'phone_no' => 'required',
             'address' => 'required|max:255',
-            'account_holder_name' => 'required|string|min:2|max:20',
+            'account_holder_name' => 'required',
             'account_no' => 'required',
             'bank_name' => 'required|max:255',
             'ifsc_code' => 'required|max:50',
-            'branch_address' => 'required|max:255',
+            'branch_address' => 'required|max:255',*/
         ]);
 
         // Update the record

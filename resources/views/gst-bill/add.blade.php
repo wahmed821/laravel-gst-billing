@@ -28,7 +28,7 @@
                             <div class="col-md-4">
                                 <div class="form-group mb-3">
                                     <label>Party</label>
-                                    <select class="form-control border-bottom" name="party_id" id="validationCustom01">
+                                    <select class="form-control border-bottom" required name="party_id" id="validationCustom01">
                                         <option value="">Please select</option>
                                         @foreach($parties as $party)
                                         <option value="{{ $party->id }}">{{ $party->full_name }}</option>
@@ -40,14 +40,14 @@
                             <div class="col-md-4">
                                 <div class="form-group mb-3">
                                     <label>Invoice Date</label>
-                                    <input type="date" name="invoice_date" class="form-control border-bottom" id="validationCustom02">
+                                    <input type="date" required name="invoice_date" class="form-control border-bottom" id="validationCustom02">
                                 </div>
                             </div>
 
                             <div class="col-md-4">
                                 <div class="form-group mb-3">
                                     <label>Invoice Number</label>
-                                    <input type="text" name="invoice_no" class="form-control border-bottom" id="validationCustom02" placeholder="Enter Invoice number">
+                                    <input type="text" required value="{{ $invoice_no }}" name="invoice_no" class="form-control border-bottom" id="validationCustom02" placeholder="Enter Invoice number">
                                 </div>
                             </div>
                         </div>
@@ -60,20 +60,26 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-md-8 border p-1 text-center">
+                            <div class="col-md-6 border p-1 text-center">
                                 <b>DESCRIPTIONS</b>
                             </div>
-                            <div class="col-md-4 border p-1 text-center">
+                            <div class="col-md-3 border p-1 text-center">
                                 <b>TOTAL AMOUNT</b>
+                            </div>
+                            <div class="col-md-3 border p-1 text-center">
+                                <b>TOTAL AMOUNT (USD)</b>
                             </div>
                         </div>
 
                         <div class="row mb-3">
-                            <div class="col-md-8 border p-2">
-                                <input class="form-control" name="item_description" />
+                            <div class="col-md-6 border p-2">
+                                <input class="form-control" required name="item_description" placeholder="Enter description" />
                             </div>
-                            <div class="col-md-4 border p-2">
-                                <input class="form-control" type="text" name="total_amount" id="totalAmountInput" oninput="calculateNetAmount()">
+                            <div class="col-md-3 border p-2">
+                                <input class="form-control" required type="text" name="total_amount" id="totalAmountInput" placeholder="Enter INR amount" oninput="calculateNetAmount()">
+                            </div>
+                            <div class="col-md-3 border p-2">
+                                <input class="form-control" type="text" name="total_amount_usd" placeholder="Enter USD amount" />
                             </div>
                         </div>
 

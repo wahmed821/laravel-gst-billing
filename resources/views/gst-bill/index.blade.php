@@ -21,12 +21,12 @@
                 <a href="{{ route('add-gst-bill') }}" class="btn btn-sm btn-blue waves-effect waves-light float-right">
                     <i class="mdi mdi-plus-circle"></i> Create New Bill
                 </a>
-                <h4 class="header-title mb-4 text-uppercase">Manage Bills</h4>
+                <h4 class="header-title mb-4 text-uppercase">All Bills</h4>
 
-                <table class="table table-hover m-0 table-centered dt-responsive nowrap w-100 table-bordered" id="tickets-table">
+                <table id="basic-datatable" class="table table-hover m-0 table-centered dt-responsive nowrap w-100 table-bordered">
                     <thead>
                         <tr>
-                            <th>S.No.</th>
+                            <th>Sr No</th>
                             <th>Invoice No</th>
                             <th>Cielnt's Info</th>
                             <th>Billing Info</th>
@@ -36,10 +36,10 @@
                     </thead>
 
                     <tbody>
-                        @if(count($bills))
+                        <?php $i = 1 ?>
                         @foreach($bills as $index => $bill)
                         <tr>
-                            <td><b>{{ $index+1 }}</b></td>
+                            <td>{{ $i++ }}</td>
                             <td>#{{ $bill->invoice_no }}</td>
                             <td>
                                 <ul class="list-unstyled">
@@ -62,18 +62,13 @@
                                     <a href="javascript: void(0);" class="table-action-btn dropdown-toggle arrow-none btn btn-light btn-sm" data-toggle="dropdown" aria-expanded="false"><i class="mdi mdi-dots-horizontal"></i></a>
                                     <div class="dropdown-menu dropdown-menu-right">
                                         <a class="dropdown-item" href="{{ route('delete', ['gst_bills', $bill->id]) }}"><i class="mdi mdi-delete mr-2 text-muted font-18 vertical-middle"></i>Delete</a>
-                                        <a class="dropdown-item" href="{{ route('print-gst-bill', $bill->id) }}"><i class="mdi mdi-printer mr-2 text-muted font-18 vertical-middle"></i>
-                                            Print</a>
+                                        <a class="dropdown-item" href="{{ route('print-gst-bill', $bill->id) }}"><i class="mdi mdi-printer mr-2 text-muted font-18 vertical-middle"></i>Print</a>
+                                        <a class="dropdown-item" href="{{ route('print-gst-bill', [$bill->id, 'usd']) }}"><i class="mdi mdi-printer mr-2 text-muted font-18 vertical-middle"></i>Print USD Bill</a>
                                     </div>
                                 </div>
                             </td>
                         </tr>
                         @endforeach
-                        @else
-                        <tr>
-                            <td colspan="6">No record found!</td>
-                        </tr>
-                        @endif
                     </tbody>
                 </table>
             </div><!-- end col -->

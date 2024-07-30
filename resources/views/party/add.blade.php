@@ -29,7 +29,7 @@
                             <div class="col-md-4">
                                 <div class="form-group mb-3">
                                     <label for="validationCustom01">Type</label>
-                                    <select name="party_type" class="form-control border-bottom" id="validationCustom01" placeholder="Please select Type">
+                                    <select name="party_type" required class="form-control border-bottom" id="validationCustom01" placeholder="Please select Type">
                                         <option value="">Please select</option>
                                         <option value="client" @if(old('party_type')=='client' ) selected @endif>Client</option>
                                         <option value="vendor" @if(old('party_type')=='vendor' ) selected @endif>Vendor</option>
@@ -40,7 +40,7 @@
                             <div class="col-md-4">
                                 <div class="form-group mb-3">
                                     <label for="validationCustom01">Full Name</label>
-                                    <input type="text" value="{{ old('full_name') }}" name="full_name" class="form-control border-bottom " id="validationCustom01" placeholder="Enter client's full name">
+                                    <input type="text" required value="{{ old('full_name') }}" name="full_name" class="form-control border-bottom " id="validationCustom01" placeholder="Enter client's full name">
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -58,7 +58,7 @@
                             <div class="col-md-12">
                                 <div class="form-group mb-3">
                                     <label for="validationCustom03">Address</label>
-                                    <input type="text" name="address" class="form-control border-bottom " id="validationCustom02" placeholder="Enter Address">
+                                    <input type="text" name="address" value="{{ old('address') }}" class="form-control border-bottom " id="validationCustom02" placeholder="Enter Address">
                                 </div>
                             </div>
                         </div>
@@ -70,14 +70,14 @@
                             <div class="col-md-4">
                                 <div class="form-group mb-3">
                                     <label for="validationCustom04">Account Holder Name</label>
-                                    <input type="text" name="account_holder_name" class="form-control border-bottom " id="validationCustom04" placeholder="Enter Accoumt Holder name">
+                                    <input type="text" value="{{ old('account_holder_name') }}" name="account_holder_name" class="form-control border-bottom " id="validationCustom04" placeholder="Enter Accoumt Holder name">
                                 </div>
                             </div>
 
                             <div class="col-md-4">
                                 <div class="form-group mb-3">
                                     <label for="validationCustom05">Account Number</label>
-                                    <input type="text" name="account_no" class="form-control border-bottom " id="validationCustom05" placeholder="Enter Account Number">
+                                    <input type="text" value="{{ old('account_no') }}" name="account_no" class="form-control border-bottom " id="validationCustom05" placeholder="Enter Account Number">
                                 </div>
                             </div>
 
@@ -85,7 +85,7 @@
                             <div class="col-md-4">
                                 <div class="form-group mb-3">
                                     <label for="validationCustom02">Bank Name</label>
-                                    <input type="text" name="bank_name" class="form-control border-bottom " id="validationCustom02" placeholder="Enter Bank Name">
+                                    <input type="text" value="{{ old('bank_name') }}" name="bank_name" class="form-control border-bottom " id="validationCustom02" placeholder="Enter Bank Name">
                                 </div>
                             </div>
                         </div>
@@ -94,14 +94,14 @@
                             <div class="col-md-4">
                                 <div class="form-group mb-3">
                                     <label for="validationCustom02">IFSC Code</label>
-                                    <input type="text" name="ifsc_code" class="form-control border-bottom " id="validationCustom02" placeholder="Enter IFSC Code">
+                                    <input type="text" value="{{ old('ifsc_code') }}" name="ifsc_code" class="form-control border-bottom " id="validationCustom02" placeholder="Enter IFSC Code">
                                 </div>
                             </div>
 
                             <div class="col-md-8">
                                 <div class="form-group mb-3">
                                     <label for="validationCustom02">Branch Address</label>
-                                    <input type="text" name="branch_address" class="form-control border-bottom " id="validationCustom02" placeholder="Enter Branch Address">
+                                    <input type="text" value="{{ old('branch_address') }}" name="branch_address" class="form-control border-bottom " id="validationCustom02" placeholder="Enter Branch Address">
                                 </div>
                             </div>
                         </div>

@@ -19,6 +19,7 @@ class GstBill extends Model
         "invoice_no",
         "item_description",
         "total_amount",
+        "total_amount_usd",
         "cgst_rate",
         "sgst_rate",
         "igst_rate",

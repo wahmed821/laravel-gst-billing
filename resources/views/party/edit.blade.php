@@ -31,7 +31,7 @@
                             <div class="col-md-4">
                                 <div class="form-group mb-3">
                                     <label for="validationCustom01">Type</label>
-                                    <select name="party_type" class="form-control border-bottom" id="validationCustom01" placeholder="Please select Type">
+                                    <select required name="party_type" class="form-control border-bottom" id="validationCustom01" placeholder="Please select Type">
                                         <option value="">Please select</option>
                                         <option value="client" @if($party->party_type == 'client') selected @endif>Client</option>
                                         <option value="vendor" @if($party->party_type == 'vendor') selected @endif>Vendor</option>
@@ -42,7 +42,7 @@
                             <div class="col-md-4">
                                 <div class="form-group mb-3">
                                     <label for="validationCustom01">Full Name</label>
-                                    <input type="text" value="{{ $party->full_name }}" name="full_name" class="form-control border-bottom " id="validationCustom01" placeholder="Enter client's full name">
+                                    <input type="text" required value="{{ $party->full_name }}" name="full_name" class="form-control border-bottom " id="validationCustom01" placeholder="Enter client's full name">
                                 </div>
                             </div>
                             <div class="col-md-4">

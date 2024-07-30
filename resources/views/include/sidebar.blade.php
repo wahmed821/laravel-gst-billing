@@ -50,6 +50,13 @@
                         </ul>
                     </div>
                 </li>
+
+                <li>
+                    <a href="{{ route('vendor-invoice.index') }}">
+                        <i class="fa fa-list"></i>
+                        <span> Vendor Invoices </span>
+                    </a>
+                </li>
             </ul>
         </div>
         <!-- End Sidebar -->

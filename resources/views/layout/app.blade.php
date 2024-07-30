@@ -3,11 +3,18 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Dashboard</title>
+    <title>Coding Kalakar</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
     <meta content="Coderthemes" name="author" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- Datatables css -->
+    <link href="{{ asset('public/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('public/assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('public/assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('public/assets/libs/datatables.net-select-bs4/css//select.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
+    <!-- Datatables end -->
 
     <!-- App css -->
     <link href="{{ asset('public/assets/css2/bootstrap-creative.min.css') }}" rel="stylesheet" type="text/css" id="bs-default-stylesheet" />
@@ -36,7 +43,7 @@
                         <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                             <img src="{{ asset('public/assets/images/users/user-1.jpg') }}" alt="user-image" class="rounded-circle" />
                             <span class="pro-user-name ml-1">
-                                Geneva <i class="mdi mdi-chevron-down"></i>
+                                Hi Admin <i class="mdi mdi-chevron-down"></i>
                             </span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right profile-dropdown">
@@ -46,10 +53,10 @@
                             </div>
 
                             <!-- item-->
-                            <!--<a href="javascript:void(0);" class="dropdown-item notify-item">
-                                <i class="fe-user"></i>
-                                <span>My Account</span>
-                            </a>-->
+                            <a href="{{ route('change-password') }}" class="dropdown-item notify-item">
+                                <i class="fe-lock"></i>
+                                <span>Change Password</span>
+                            </a>
 
                             <div class="dropdown-divider"></div>
 
@@ -69,19 +76,19 @@
                 <div class="logo-box">
                     <a href="{{ route('dashboard') }}" class="logo logo-dark text-center">
                         <span class="logo-sm">
-                            <span class="logo-lg-text-light">GST-B</span>
+                            <span class="logo-lg-text-light">CK</span>
                         </span>
                         <span class="logo-lg">
-                            <span class="logo-lg-text-light">GST-B</span>
+                            <span class="logo-lg-text-light">CK</span>
                         </span>
                     </a>
 
                     <a href="{{ route('dashboard') }}" class="logo logo-light text-center">
                         <span class="logo-sm">
-                            <span class="logo-lg-text-light">GST-B</span>
+                            <span class="logo-lg-text-light">CK</span>
                         </span>
                         <span class="logo-lg">
-                            <span class="logo-lg-text-light">GST-B</span>
+                            <span class="logo-lg-text-light">CK</span>
                         </span>
                     </a>
                 </div>
@@ -131,6 +138,14 @@
 
     <!-- Vendor js -->
     <script src="{{ asset('public/assets/js2/vendor.min.js') }}"></script>
+
+    <!-- Datatables-->
+    <script src="{{ asset('public/assets/libs/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('public/assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('public/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('public/assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js') }}"></script>
+    <!-- Datatables init -->
+    <script src="{{ asset('public/assets/js/pages/datatables.init.js') }}"></script>
 
     <!-- Plugins js-->
     <script src="{{ asset('public/assets/libs2/flatpickr/flatpickr.min.js') }}"></script>

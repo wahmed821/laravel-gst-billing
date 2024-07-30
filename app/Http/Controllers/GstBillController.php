@@ -18,7 +18,7 @@ class GstBillController extends Controller
     # Function to load gst bills
     public function index()
     {
-        $bills = GstBill::where('is_deleted', 0)->with('party')->get();
+        $bills = GstBill::where('is_deleted', 0)->with('party')->orderBy('id', 'desc')->get();
         return view("gst-bill.index", compact('bills'));
     }
 
@@ -26,6 +26,12 @@ class GstBillController extends Controller
     public function addGstBill()
     {
         $data['parties'] = Party::where('party_type', 'client')->orderBy('full_name')->get();
+
+        $bills = DB::table('gst_bills')->orderBy('id', 'desc')->first();
+        if (empty($bills))
+            $data['invoice_no'] = 1;
+        else
+            $data['invoice_no'] = $bills->invoice_no + 1;
 
         return view("gst-bill.add", $data);
     }
@@ -54,15 +60,17 @@ class GstBillController extends Controller
 
         // Remove token from post data before inserting
         unset($param['_token']);
-        GstBill::create($param);
+        $bill = GstBill::create($param);
 
         // Redirect to manage bills
-        return redirect()->route('manage-gst-bills')->withStatus("Bill created successfully");
+        return redirect()->route('print-gst-bill', $bill->id)->withStatus("Bill created successfully");
     }
 
     # Function to load print gst bill view
-    public function print($id)
+    public function print($id, $currency = null)
     {
+        $data['currency'] = $currency;
+        $data['company'] = DB::table('company_details')->where('id', 1)->first();
         $data['bill'] = GstBill::where('id', $id)->with('party')->first();
         return view("gst-bill.print", $data);
     }

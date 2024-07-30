@@ -1,6 +1,7 @@
 @extends('layout.app')
 
 @section('content')
+
 <!-- Start Content-->
 <div class="container-fluid">
 
@@ -21,21 +22,15 @@
                 <!-- Company Info -->
                 <div class="clearfix">
                     <div class="text-center">
-                        <h1>ABC Company</h1>
+                        <h1 class="text-uppercase">{{ $company->name }}</h1>
                     </div>
                     <div class="text-center">
-                        <span>Bikaner-334001 (Raj.) India</span><br>
-                        <span><b>Email:</b> abc@gmail.com | <b>Web:</b> www.abc.com | <b>Mob:</b>
-                            +919601230111</span>
-                    </div>
-                    <div class="row pb-1">
-                        <div class="col-6 text-right">
-                            <span class="text-right"><b>PAN NO:</b> TEST02984</span>
-                        </div>
-                        <div class="col-6">
-                            <span>
-                                <b>GSTIN NO:</b> TEST92895C0DE3</span>
-                        </div>
+                        <span>{!! $company->address !!}</span><br>
+                        @if($company->email)<span><b>Email:</b> {{ $company->email }} | </span> @endif
+                        @if($company->website)<span><b>Web:</b> {{ $company->website }} | </span> @endif
+                        @if($company->phone_number)<span><b>Mob:</b> +91 {{ $company->phone_number }}</span> @endif
+                        @if($company->pan_number)<span> | <b>PAN NO:</b> {{ $company->pan_number }}</span>@endif
+                        @if($company->gstin_number)<span> | <b>GSTIN:</b> {{ $company->gstin_number }}</span>@endif
                     </div>
                 </div>
                 <!-- end row -->
@@ -71,6 +66,25 @@
                                 <span class="ml-1">{{ $bill->party->address }}</span>
                             </div>
                         </div>
+
+                        <div class="row pl-2">
+                            <div class="col-6 d-flex justiy-content-start">
+                                <label>State:</label>
+                                <span class="ml-1">{{ $bill->party->state }}</span>
+                            </div>
+
+                            <div class="col-6 text-right pr-3">
+                                <label>State Code:</label>
+                                <span class="ml-1">{{ $bill->party->state_code }}</span>
+                            </div>
+                        </div>
+
+                        <div class="row pl-2">
+                            <div class="col-12 d-flex justiy-content-start">
+                                <label>GSTIN:</label>
+                                <span class="ml-1">{{ $bill->party->gstin }}</span>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-6 border p-0">
                         <b>
@@ -87,7 +101,7 @@
                         <div class="row pl-2">
                             <div class="col-12 d-flex justiy-content-start">
                                 <label>Invoice Date:</label>
-                                <span class="ml-1">{{ date("d-m-Y", strtotime($bill->invoice_date)) }}</span>
+                                <span class="ml-1">{{ date("d F Y", strtotime($bill->invoice_date)) }}</span>
                             </div>
                         </div>
                     </div>
@@ -112,7 +126,13 @@
                                         <td>
                                             <b>{{ $bill->item_description }}</b>
                                         </td>
-                                        <td class="text-center">₹{{ $bill->total_amount }}</td>
+                                        <td class="text-center">
+                                            @if($currency == 'usd')
+                                            ${{ $bill->total_amount_usd }}
+                                            @else
+                                            ₹{{ $bill->total_amount }}
+                                            @endif
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -122,20 +142,24 @@
                 <!-- end row -->
 
                 <div class="row border">
-                    <div class="col-sm-6 col-lg-9 p-0">
+                    <div class="col-sm-9 col-lg-9 p-0">
                         <div class="clearfix pt-2 pb-2 mt-1 mb-1 ml-1 text-center" style="background-color: rgba(218, 218, 218, 0.37); border-radius: 5px;">
                             <h5><b>Bank Details</b></h5>
-                            <p><b>UCO BANK - ACCOUNT NO: 180011220011012 - IFSC: UCBA0001011</b></p>
+                            <p><b>{{ $company->bank_name }} - ACCOUNT NO: {{ $company->account_number }} - IFSC: {{ $company->ifsc_code }}</b></p>
                         </div>
                     </div> <!-- end col -->
-                    <div class="col-sm-6 col-lg-3 mt-1">
+                    <div class="col-sm-3 col-lg-3 mt-1">
                         <ul class="list-unstyled">
-                            <li><b>Total :</b> <span class="float-right"><i class="fas fa-rupee-sign"></i> {{ $bill->total_amount }}</span></li>
-                            <li><b>CGST :</b><span class="float-right"><i class="fas fa-rupee-sign"></i> {{ $bill->cgst_amount }}</span></li>
-                            <li><b>SGST :</b><span class="float-right"><i class="fas fa-rupee-sign"></i> {{ $bill->sgst_amount }}</span></li>
-                            <li><b>IGST :</b><span class="float-right"><i class="fas fa-rupee-sign"></i> {{ $bill->igst_amount }}</span></li>
+                            @if($currency == 'usd')
+                            <li><b>Net Amount :</b><span class="float-right"><i class="fas fa-dollar-sign"></i>{{ $bill->total_amount_usd }}</span></li>
+                            @else
+                            <li><b>Total :</b><span class="float-right"><i class="fas fa-rupee-sign"></i> {{ $bill->total_amount }}</span></li>
+                            <li><b>CGST ({{ $bill->cgst_rate }}%) :</b><span class="float-right"><i class="fas fa-rupee-sign"></i> {{ $bill->cgst_amount }}</span></li>
+                            <li><b>SGST ({{ $bill->sgst_rate }}%) :</b><span class="float-right"><i class="fas fa-rupee-sign"></i> {{ $bill->sgst_amount }}</span></li>
+                            <li><b>IGST  ({{ $bill->igst_rate }}%) :</b><span class="float-right"><i class="fas fa-rupee-sign"></i> {{ $bill->igst_amount }}</span></li>
                             <li><b>Total Tax :</b><span class="float-right"><i class="fas fa-rupee-sign"></i> {{ $bill->tax_amount }}</span></li>
                             <li><b>Net Amount :</b><span class="float-right"><i class="fas fa-rupee-sign"></i> {{ $bill->net_amount }}</span></li>
+                            @endif
                         </ul>
                         <div class="clearfix"></div>
                     </div> <!-- end col -->
